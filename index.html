@@ -7,29 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Storybook Opening Scene -->
     <div id="storybook" class="scene">
-        <h1>Once upon a time...</h1>
-        <p>A special someone was invited to a magical evening...</p>
+        <h1>Hello Darling!</h1>
+        <p>I should've asked you this way before, but here we go...</p>
         <button id="startBtn">Continue</button>
     </div>
-
-    <div id="towerScene" class="scene">
-        <h1>Will you join me under the stars?</h1>
+    
+    <!-- Rapunzel’s Tower Scene -->
+    <div id="towerScene" class="scene hidden">
+        <h1>Will you be my Rapunzel?</h1>
+        <p> While I to be your Flynn</p>
         <button id="yesBtn">Yes</button>
         <button id="noBtn">No</button>
+        <div id="lightOverlay"></div>
     </div>
 
-    <div id="lanternScene" class="scene">
-        <h1>See you under the lanterns!</h1>
-        <p id="message">I can't wait to watch *Tangled* with you!</p>
+    <!-- Lantern Scene (Final Stage) -->
+    <div id="lanternScene" class="scene hidden">
+        <h1>See you under the lanterns tonight!</h1>
+        <p id="message"></p>
+        <div id="lanternContainer"></div>
     </div>
-
-    <audio id="backgroundMusic" loop>
-        <source src="tangled_instrumental.mp3" type="audio/mp3">
-    </audio>
-    <audio id="lanternSound" loop>
-        <source src="lantern_flicker.mp3" type="audio/mp3">
-    </audio>
+<audio id="bgMusic" loop>
+    <source src="tangled_instrumental.mp3" type="audio/mpeg">
+</audio>
 
     <script src="script.js"></script>
 </body>
