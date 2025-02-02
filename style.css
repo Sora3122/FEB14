@@ -1,35 +1,113 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f3e7;
     text-align: center;
-    color: #5a4d2f;
+    background: linear-gradient(to bottom, #000000, #282442);
+    color: #ffffff;
     margin: 0;
-    padding: 0;
+    overflow: hidden;
 }
 
-h1 {
-    font-size: 3em;
-    color: #f7e6a0;
+/* Scene Setup */
+.scene {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+.hidden {
+    display: none;
+}
+
+/* Button Styling */
 button {
-    padding: 10px 20px;
-    font-size: 1.2em;
+    padding: 12px 24px;
+    font-size: 20px;
+    margin-top: 20px;
+    background-color: #ffcc00;
     border: none;
-    background-color: #f7c21e;
-    color: #fff;
     cursor: pointer;
-    margin: 20px;
-    transition: background-color 0.3s ease;
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
 }
 
 button:hover {
-    background-color: #f7a900;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
 }
 
-.scene {
-    display: none;
+/* Lanterns Floating */
+#lanternContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* Prevent interaction with lanterns */
+}
+
+/* Individual Lantern */
+.lantern {
+    position: absolute;
+    bottom: -50px; /* Start below the screen */
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(to bottom, #ffcc00, #ff9900);
+    border-radius: 10px;  
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(255, 204, 102, 1); /* Glow effect */
+    animation: floatLanterns 8s linear infinite, flicker 2s infinite;
+}
+
+/* Lantern top (for realism) */
+.lantern::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #cc9900;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+/* Keyframes for floating lanterns */
+@keyframes floatLanterns {
+    0% {
+        transform: translateY(0) translateX(var(--drift-start));
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--drift-end));
+        opacity: 0;
+    }
+}
+
+/* Improved flickering animation */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    30% { opacity: 0.75; }
+    60% { opacity: 0.85; }
+}
+
+/* 🔥 Golden Transition Effect */
+#lightOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 204, 102, 1) 100%, rgba(255, 165, 0, 0.8) 90%, rgba(255, 140, 0, 0) 10%);
     opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease-in-out;
+}
+
+.show-light {
+    opacity: 1 !important;
+}
     transition: opacity 1s ease;
 }
 
